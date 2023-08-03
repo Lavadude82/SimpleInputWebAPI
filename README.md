@@ -1,6 +1,6 @@
-# SimplerGamepadAPI
-Web Browser Gamepad API is a bit complicated, why not make it simple?  
-I even sprinkled some general input.
+# SimpleInputWebAPI
+Web Browser Gamepad, Keyboard, Mouse APIs are a bit complicated, why not make them simple?  
+  
 
 # gamepadInput(index:number)
 This function returns the gamepad item in a way more readable, and easier to code with. 
