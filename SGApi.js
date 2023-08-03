@@ -1,11 +1,14 @@
 var mouse = {
   x: 0,
   y: 0,
+  movx: 0,
+  movy: 0,
+  lockx: 0,
+  locky: 0,
   left: false,
   right: false,
   middle: false,
   scroll: 0,
-  lastScroll: window.scrollY,
 };
 var keys = {};
 onkeyup = onkeydown = function (e) {
@@ -14,7 +17,18 @@ onkeyup = onkeydown = function (e) {
 onmousemove = function (e) {
   mouse.x = e.clientX;
   mouse.y = e.clientY;
-  
+  mouse.movx = e.movementX;
+  mouse.movy = e.movementY;
+  if (document.pointerLockElement == null) {
+    mouse.lockx = e.clientX;
+    mouse.locky = e.clientY;
+  } else {
+    mouse.lockx += e.movementX;
+    mouse.locky += e.movementY;
+  }
+};
+onwheel = (e) => {
+  mouse.scroll = e.deltaY;
 };
 onmousedown = onmouseup = function (e) {
   mouse.left = e.button == 0 && e.type == "mousedown";
@@ -71,8 +85,19 @@ function mouseInput() {
       left: mouse.left,
       right: mouse.right,
     },
-    scroll: mouse.scroll,
+    scroll: 0 - mouse.scroll,
+    movement: {
+      x: mouse.movx,
+      y: mouse.movy,
+    },
+    locked: {
+      x: mouse.lockx,
+      y: mouse.locky,
+    },
   };
+  mouse.scroll = 0;
+  mouse.movx = 0;
+  mouse.movy = 0;
   return mouseData;
 }
 function getKey(keycode) {
