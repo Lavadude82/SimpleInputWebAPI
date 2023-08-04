@@ -1,5 +1,6 @@
 # SimpleInputWebAPI
-Web Browser Gamepad, Keyboard, Mouse APIs are a bit complicated, why not make them simple?  
+Web Browser Gamepad, Keyboard, Mouse APIs/Events are a bit complicated for starters, why not make them simple?  
+This is useful for Canvas API development.
   
 
 # gamepadInput(index:number)
